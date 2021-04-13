@@ -1,5 +1,5 @@
 <?php
-// FUNCION 1
+// FUNCION 1 Panita prueba
 function insertarUsuarios($user, $pass){
     global $servername,$username, $password, $bbdd;
 
