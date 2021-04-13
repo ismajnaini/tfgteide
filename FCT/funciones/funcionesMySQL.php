@@ -8,7 +8,7 @@ function insertarUsuarios($user, $pass){
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $conn->exec("set names utf8");
 
-        $sql="SELECT COUNT(*) FROM `usuarios` WHERE `usuario`= '$user'";
+        $sql="SELECT COUNT(*) FROM `usuarios` WHERE `Usuario`= '$user'";
         $temporal=$conn->query($sql);
         $resultado=$temporal->fetchAll();
 
@@ -16,7 +16,8 @@ function insertarUsuarios($user, $pass){
             $resultado="Usuario ya registrado";
         }else{
 
-            $sql1="INSERT INTO `usuarios` (`usuario`, `password`, `admin`) VALUES ('$user','$pass','1')";
+          //  $sql1="INSERT INTO `usuarios` (`Usuario`, `Contraseña`, `admin`) VALUES ('$user','$pass','1')";
+          $sql1="INSERT INTO `usuarios` (`Usuario`, `Contraseña`) VALUES ('$user','$pass')";
             $nuevoAdministrador=$conn->exec($sql1);
             $resultado="Nuevo usuario insertado correctamente";
         }
@@ -36,17 +37,17 @@ function comprobarUsuario($user,$pass){
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $conn->exec("set names utf8");
 
-        $sql="SELECT COUNT(*) FROM `usuarios` WHERE `usuario`= '$user'";
+        $sql="SELECT COUNT(*) FROM `usuarios` WHERE `Usuario`= '$user'";
         $temporal=$conn->query($sql);
         $resultado=$temporal->fetchAll();
 
         if($resultado[0][0]==1){ //Porque sólo se va a tener un resultado [0][0]
-            $sql="SELECT COUNT(*) FROM `usuarios` WHERE `usuario`= '$user' AND `password`='$pass'";
+            $sql="SELECT COUNT(*) FROM `usuarios` WHERE `Usuario`= '$user' AND `password`='$pass'";
             $temporal=$conn->query($sql);
             $resultado=$temporal->fetchAll();
 
             if($resultado[0][0]==1){ //Porque sólo se va a tener un resultado [0][0]
-                $sql="SELECT `admin` FROM `usuarios` WHERE `usuario`= '$user'";//No hace falta usar pass porque se llega aquí si todo el correcto
+                $sql="SELECT `admin` FROM `usuarios` WHERE `Usuario`= '$user'";//No hace falta usar pass porque se llega aquí si todo el correcto
                 $temporal=$conn->query($sql);
                 $resultado=$temporal->fetchAll();
                 $final=$resultado[0]["admin"];
