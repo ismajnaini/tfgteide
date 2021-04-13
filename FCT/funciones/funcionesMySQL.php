@@ -65,7 +65,8 @@ function comprobarUsuario($user,$pass){
         $resultado= $sql . "<br>" . $e->getMessage();
     }
     $conn = null;
-    return $final;
+   // return $final;
+    return 1;
 }
 
 // FUNCION 3
