@@ -1,5 +1,5 @@
 <?php
-// FUNCION 1 Panita prueba
+// FUNCION 1
 function insertarUsuarios($user, $pass){
     global $servername,$username, $password, $bbdd;
 
@@ -28,7 +28,7 @@ function insertarUsuarios($user, $pass){
     return $resultado;
 }
 
-// FUNCION 2 hola
+// FUNCION 2
 function comprobarUsuario($user,$pass){
     global $servername,$username, $password, $bbdd;
 
