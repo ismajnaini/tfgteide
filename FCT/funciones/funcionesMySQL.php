@@ -28,7 +28,7 @@ function insertarUsuarios($user, $pass){
     return $resultado;
 }
 
-// FUNCION 2
+// FUNCION 2 hola
 function comprobarUsuario($user,$pass){
     global $servername,$username, $password, $bbdd;
 
