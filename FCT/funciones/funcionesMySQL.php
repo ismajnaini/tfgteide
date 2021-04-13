@@ -1,5 +1,5 @@
 <?php
-// FUNCION 1 Panu
+// FUNCION 1 no funciona
 function insertarUsuarios($user, $pass){
     global $servername,$username, $password, $bbdd;
 
