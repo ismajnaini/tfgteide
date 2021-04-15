@@ -2,7 +2,7 @@
 //hola eyyy que tal pan
 //hola Javi nuevo cambio
 
-//isma nuevo cambio
+//hacer la declaracion 
 
 	//Llama a config y pinta lo que hay en config.php
 	//Require: da fatal error
