@@ -1,7 +1,7 @@
 <?php
 //hola eyyy que tal pan
-//Comentario de prueba
-//comentario de prueba de isma probando
+
+//isma 
 
 	//Llama a config y pinta lo que hay en config.php
 	//Require: da fatal error
