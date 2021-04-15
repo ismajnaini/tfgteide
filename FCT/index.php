@@ -1,6 +1,8 @@
 <?php
 //hola eyyy que tal pan
-//Mensaje de ejemplo
+//Comentario de prueba
+//comentario de prueba de isma
+
 	//Llama a config y pinta lo que hay en config.php
 	//Require: da fatal error
 	//Include: no da error, da un warning
