@@ -1,11 +1,8 @@
 <?php
 //hola eyyy que tal pan
-<<<<<<< HEAD
 //hola
-=======
 
 //isma 
->>>>>>> 51c53a275509b0ee2d853668d1b52cb6aab0cb58
 
 	//Llama a config y pinta lo que hay en config.php
 	//Require: da fatal error
