@@ -1,7 +1,7 @@
 <?php
 //hola eyyy que tal pan
 
-//isma 
+//isma nuevo cambio
 
 	//Llama a config y pinta lo que hay en config.php
 	//Require: da fatal error
