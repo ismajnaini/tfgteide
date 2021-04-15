@@ -1,6 +1,6 @@
 <?php
 //hola eyyy que tal pan
-//hola Javi nuevo cambio
+//hola Javi
 
 //hacer la declaracion 
 
