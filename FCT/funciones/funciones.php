@@ -19,8 +19,8 @@ function cabecera($pagina){
 
     if ($pagina==1){ //La cabecera acceder y login
         echo "<img src=\"../../img/teide_grande.jpg\" class=\"logo\" onclick=\"location='vent_ppal.php'\">\n";
-        echo "<input type=\"button\" class=\"btn_vent_ppal btn_img_vent_ppal\" onclick=\"location='registro.php'\" name=\"registrarse\" value=\"Registrarse\">\n";
-        echo "<img src=\"../../img/registrarse.png\" class=\"btn_img_vent_ppal\" onclick=\"location='registro.php'\">\n";
+        echo "<input type=\"button\" class=\"btn_vent_ppal btn_img_vent_ppal\" onclick=\"location='registro.php'\" name=\"registrarse\" value=\"Registrarse\">\n";//-
+        echo "<img src=\"../../img/registrarse.png\" class=\"btn_img_vent_ppal\" onclick=\"location='registro.php'\">\n";//-
         echo "<input type=\"button\" class=\"btn_vent_ppal btn_img_vent_ppal\" onclick=\"location='login.php'\" name=\"acceder\" value=\"Acceder\">\n";
         echo "<img src=\"../../img/acceder.png\" class=\"btn_img_vent_ppal\" onclick=\"location='login.php'\">\n";
     }elseif ($pagina==2){ //La cabecera cuando hemos iniciado la sesión
@@ -162,20 +162,26 @@ function mostrarEmpConvAnex(){
     echo "</span>";
     echo "</br>";
     echo "</form>";
+    
+    echo "<table style=\"border-collapse: collapse; background-color:#F6F6F6;margin-left: auto;margin-right: auto;margin-top: 100px \">";
+    echo "<tr>";
+    echo "<th style=\"border: 1px solid black\"></th>";
+    echo "<th style=\"border: 1px solid black\">Nombre empresa</th>";
+    echo "<th style=\"border: 1px solid black\">Nº de convenio</th>";
+    echo "</tr>";
+
+    do{
     if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['empresa'])){
         $emp= $_REQUEST['empresa'];
-        echo "<table style=\"border-collapse: collapse; background-color:#F6F6F6;margin-left: auto;margin-right: auto;margin-top: 100px \">";
-        echo "<tr>";
-        echo "<th style=\"border: 1px solid black\"></th>";
-        echo "<th style=\"border: 1px solid black\">Nombre empresa</th>";
-        echo "<th style=\"border: 1px solid black\">Nº de convenio</th>";
-        echo "</tr>";
+
 
         $row = datosEmpConv($emp);
+
         echo "<tr>";
         echo "<td style=\"border: 1px solid black\">" . "<input type=\"radio\" name=\"box\" checked>" . "</td>";
         echo "<td style=\"border: 1px solid black\">" . $row['nombre_empresa'] . "</td>";
         echo "<td style=\"border: 1px solid black\">" . $row['numero_convenio'] . "</td>";
+        
         echo "</tr>";
 
         $var1 =  $row['numero_convenio'];
@@ -183,7 +189,9 @@ function mostrarEmpConvAnex(){
     margin-left: 35%;
     margin-right: auto;
 margin-top: 5%;\">Seleccionar empresa</button>";
+     // $var1-=1;
     }
+}while($row>0);
 
     echo '</table>';
 
@@ -202,6 +210,7 @@ function mostrarAlumnoDni(){
     echo "</span>";
     echo "</br>";
     echo "</form>";
+  
     if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['alumnos'])){
         $emp= $_REQUEST['alumnos'];
         echo "<table style=\"border-collapse: collapse; background-color:#F6F6F6;margin-left: auto;margin-right: auto;margin-top: 100px  \">";
@@ -224,6 +233,7 @@ function mostrarAlumnoDni(){
     margin-right: auto;
 margin-top: 5%;\">Seleccionar alumno</button>";
     }
+
 
     echo '</table>';
 

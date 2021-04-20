@@ -4,6 +4,9 @@
     $username = "FCT_user";
     $password = "FCT_database_2020";
     $bbdd = "API";
+    
+
+
 
     $conn = new mysqli($servername, $username, $password, $bbdd);
     if ($conn->connect_error) {

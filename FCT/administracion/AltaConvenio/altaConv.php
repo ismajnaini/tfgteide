@@ -37,7 +37,7 @@
 				
 				$conn = mysqli_connect($servername, $username, $password, $bbdd);
 				try{ 
-					$temporal=mysqli_query($conn, "SELECT `NIF` FROM `empresas` WHERE `nombre_empresa`='$nEmpresa' and `NIF` not in (SELECT `NIF` from `convenios`)");
+					$temporal=mysqli_query($conn, "SELECT `NIF` FROM `empresas` WHERE `Nombre_empresa`='$nEmpresa' and `NIF` not in (SELECT `NIF` from `convenios`)");
 					$resultNif=mysqli_fetch_array($temporal);
 					$variablenormal = $resultNif['NIF'];
 					$variablesupernormal = 1;

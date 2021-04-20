@@ -17,7 +17,7 @@
 	}else{
 		cabecera(1);
 ?>
-
+		
 		<form method="post" action="../control_sesion.php"> 
 			<div class="recuadros">
 				<input type="text" name="nombre" placeholder="Nombre" required class="input_recuadro">	

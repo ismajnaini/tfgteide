@@ -31,7 +31,7 @@ function insertarUsuarios($user, $pass){
 // FUNCION 2
 function comprobarUsuario($user,$pass){
     global $servername,$username, $password, $bbdd;
-
+  
     try{
         $conn = new PDO("mysql:host=$servername;dbname=$bbdd", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -40,33 +40,45 @@ function comprobarUsuario($user,$pass){
         $sql="SELECT COUNT(*) FROM `usuarios` WHERE `Usuario`= '$user'";
         $temporal=$conn->query($sql);
         $resultado=$temporal->fetchAll();
-
+     
         if($resultado[0][0]==1){ //Porque sólo se va a tener un resultado [0][0]
-            $sql="SELECT COUNT(*) FROM `usuarios` WHERE `Usuario`= '$user' AND `password`='$pass'";
+            $sql="SELECT COUNT(*) FROM `usuarios` WHERE `Usuario`= '$user' AND `Contraseña`='$pass'";
             $temporal=$conn->query($sql);
             $resultado=$temporal->fetchAll();
-
-            if($resultado[0][0]==1){ //Porque sólo se va a tener un resultado [0][0]
-                $sql="SELECT `admin` FROM `usuarios` WHERE `Usuario`= '$user'";//No hace falta usar pass porque se llega aquí si todo el correcto
+         
+            if($resultado[0][0]==1){ //Porque sólo se va a tener un resultado [0][0] SI EL USUARIO Y CONTRASEÑA CORRECTAS
+                $sql="SELECT `admin` FROM `usuarios` WHERE `Usuario`= '$user'";
                 $temporal=$conn->query($sql);
                 $resultado=$temporal->fetchAll();
-                $final=$resultado[0]["admin"];
+                
+               $final=$resultado[0]['admin'];
+             
+                
+             
             }elseif($resultado[0][0]==0){
                 $final="Usuario correcto y contraseña incorrecta";
+               
             }else{
                 $final="Usuario y contraseña incorrectos";
+                
             }
         }elseif($resultado[0][0]==0){
             $final="Usuario incorrecto";
+          
+      
         }else{
             $final="Usuario y contraseña incorrectos";
+           
+            
         }
     }catch(PDOException $e){
         $resultado= $sql . "<br>" . $e->getMessage();
+        
     }
     $conn = null;
-   // return $final;
-    return 1;
+   
+   return $final;
+    
 }
 
 // FUNCION 3
@@ -78,7 +90,7 @@ function insertarAlumnos ($nombre, $apellidos, $dni,$cod_ciclo,$fecha_mat){
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $conn->exec("set names utf8");
 
-        $sql="SELECT COUNT(*) FROM `ciclos` WHERE `codigo_ciclo`= '$cod_ciclo'";
+        $sql="SELECT COUNT(*) FROM `ciclos` WHERE `Cod_ciclo`= '$cod_ciclo'";
         $temporal=$conn->query($sql);
         $resultado=$temporal->fetchAll();
 
@@ -93,16 +105,16 @@ function insertarAlumnos ($nombre, $apellidos, $dni,$cod_ciclo,$fecha_mat){
                 $resultado="El alumno ya está registrado";
             }else{
 
-                $sql="INSERT INTO `alumnos` (`DNI`, `nombre_alumno`, `apellidos_alumno`) VALUES ('$dni','$nombre','$apellidos')";
+                $sql="INSERT INTO `alumnos` (`DNI`, `Nombre`, `Apellidos`) VALUES ('$dni','$nombre','$apellidos')";
                 $nuevoAlumno=$conn->exec($sql);
                 $resultado="Nuevo alumno insertado correctamente";
 
-                $sql="SELECT * FROM `ciclos` WHERE `codigo_ciclo`= '$cod_ciclo'";
+                $sql="SELECT * FROM `ciclos` WHERE `Cod_ciclo`= '$cod_ciclo'";
                 $temporal=$conn->query($sql);
                 $resultado=$temporal->fetchAll();
                 $Tutor_Ciclo=$resultado[0]["tutor_ciclo"];
 
-                $sql="INSERT INTO `alumnos_ciclos` (`DNI`, `codigo_ciclo`, `fecha_matriculacion`,`tutor_ciclo`) VALUES ('$dni','$cod_ciclo','$fecha_mat','$Tutor_Ciclo')";
+                $sql="INSERT INTO `alumnos_ciclos` (`DNI`, `Cod_ciclo`, `fecha_matriculacion`,`tutor_ciclo`) VALUES ('$dni','$cod_ciclo','$fecha_mat','$Tutor_Ciclo')";
                 $nuevoAlumnoCiclo=$conn->exec($sql);
                 $resultado="Nuevo alumno insertado correctamente";
             }
@@ -182,7 +194,7 @@ function datosEmpConv($empresa){
     $conn = mysqli_connect($servername, $username, $password, $bbdd);
 
     try{
-        $temporal=mysqli_query($conn, "SELECT `nombre_empresa`, empresas.`NIF`, `numero_convenio`, `fecha_convenio` FROM `empresas` , `convenios` WHERE empresas.NIF=convenios.NIF AND `nombre_empresa`= '$empresa'");
+        $temporal=mysqli_query($conn, "SELECT `nombre_empresa`, empresas.`NIF`, `numero_convenio`, `fecha_convenio` FROM `empresas` , `convenios` /*WHERE empresas.NIF=convenios.NIF AND `nombre_empresa`= '$empresa'*/");
         $result=mysqli_fetch_array($temporal);
         $contador = mysqli_num_rows($temporal);
         if ($contador==0){
@@ -192,7 +204,7 @@ function datosEmpConv($empresa){
         $result= $sql . "<br>" . $e->getMessage();
     }
     $conn = null;
-
+  
     return $result;
 }
 
