@@ -170,10 +170,8 @@ function mostrarEmpConvAnex(){
     echo "<th style=\"border: 1px solid black\">Nº de convenio</th>";
     echo "</tr>";
 
-    do{
     if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['empresa'])){
         $emp= $_REQUEST['empresa'];
-
 
         $row = datosEmpConv($emp);
 
@@ -181,7 +179,6 @@ function mostrarEmpConvAnex(){
         echo "<td style=\"border: 1px solid black\">" . "<input type=\"radio\" name=\"box\" checked>" . "</td>";
         echo "<td style=\"border: 1px solid black\">" . $row['nombre_empresa'] . "</td>";
         echo "<td style=\"border: 1px solid black\">" . $row['numero_convenio'] . "</td>";
-        
         echo "</tr>";
 
         $var1 =  $row['numero_convenio'];
