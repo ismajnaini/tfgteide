@@ -155,6 +155,7 @@ function mostrarEmpConvAnex(){
     $var1 = $_GET["var1"];
     $var2 = $_GET["var2"];
     $var3 = $_GET["var3"];
+    
     echo "<form action=\"buscarConv.php?var1=$var1&var2=$var2&var3=$var3\" method=\"post\">";
     echo "<span class=\"centrarSel\">";
     echo "&#128269;<input class=\"input_empConv\" name=\"empresa\" placeholder=\"Nombre de la empresa\" type=\"text\">";
@@ -173,22 +174,18 @@ function mostrarEmpConvAnex(){
     if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['empresa'])){
         $emp= $_REQUEST['empresa'];
 
+      
         $row = datosEmpConv($emp);
+        // COGER LA VARIABLE VAR1 del varcheq
+      $variable=5;
+        echo "<button class=\"btn_empConv\" onclick=\"location='altaAnex.php?var1=$var1&var2=$var2&var3=$var3'\"style=\" 
+        margin-left: 35%;
+        margin-right: auto;
+        margin-top: 5%;\">Seleccionar empresa</button>|";
+    
 
-        echo "<tr>";
-        echo "<td style=\"border: 1px solid black\">" . "<input type=\"radio\" name=\"box\" checked>" . "</td>";
-        echo "<td style=\"border: 1px solid black\">" . $row['nombre_empresa'] . "</td>";
-        echo "<td style=\"border: 1px solid black\">" . $row['numero_convenio'] . "</td>";
-        echo "</tr>";
+        }
 
-        $var1 =  $row['numero_convenio'];
-        echo "<button class=\"btn_empConv\" onclick=\"location='altaAnex.php?var1=" . $var1 . "&var2=" . $var2 . "&var3=" . $var3 . "'\"style=\"
-    margin-left: 35%;
-    margin-right: auto;
-margin-top: 5%;\">Seleccionar empresa</button>";
-     // $var1-=1;
-    }
-}while($row>0);
 
     echo '</table>';
 

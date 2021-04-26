@@ -192,19 +192,45 @@ function insertarCiclo($codCiclo, $tutorCiclo, $nomCiclo,$fam_form){
 function datosEmpConv($empresa){
     global $servername,$username, $password, $bbdd;
     $conn = mysqli_connect($servername, $username, $password, $bbdd);
+    
 
     try{
-        $temporal=mysqli_query($conn, "SELECT `nombre_empresa`, empresas.`NIF`, `numero_convenio`, `fecha_convenio` FROM `empresas` , `convenios` /*WHERE empresas.NIF=convenios.NIF AND `nombre_empresa`= '$empresa'*/");
-        $result=mysqli_fetch_array($temporal);
-        $contador = mysqli_num_rows($temporal);
+        $result=mysqli_query($conn, "SELECT `nombre_empresa`, empresas.`NIF`, `numero_convenio`, `fecha_convenio` FROM `empresas` , `convenios` /*WHERE empresas.NIF=convenios.NIF AND `nombre_empresa`= '$empresa'*/");
+     
+        $contador = mysqli_num_rows($result);
         if ($contador==0){
             echo "<p style=\"color: red; font-size: 20px;margin-left: 25%\">Esa empresa no tiene convenio.</p>";
         }
+       //necesito sacar fila a fila y pasarlas al otro 
+         else{
+             while($fila=mysqli_fetch_assoc($result)){
+             
+          //el buscador de convenios de alta anexo
+         
+      
+    
+        echo "<tr>";
+        echo "<td style=\"border: 1px solid black\">" . "<input type=\"radio\" name=\"Buscar\" checked" . "value=". $fila['numero_convenio'].">"."</td>"; 
+        echo "<td style=\"border: 1px solid black\">" . $fila['nombre_empresa'] . "</td>";
+        echo "<td style=\"border: 1px solid black\">" . $fila['numero_convenio'] . "</td>";
+      
+        echo "</tr>";
+        
+
+    
+             }
+             
+         }             
+         
+      
+           
+
+        
     }catch(PDOException $e){
         $result= $sql . "<br>" . $e->getMessage();
     }
     $conn = null;
-  
+    
     return $result;
 }
 

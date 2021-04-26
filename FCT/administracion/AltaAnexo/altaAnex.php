@@ -12,7 +12,7 @@
 	echo "<form method='post' action='altaAnex.php?var1=&var2=&var3='>";
 		echo "<div class='recuadros'>";
 
-				echo "<input type='text' name='nConv' placeholder='Nº de convenio' required class='input_recuadro' value='$var1'>";
+				echo "<input type='text' name='nConv' placeholder='Nº de convenio' required class='input_recuadro' value=$var1>"; 
 				echo "<input type='button' name='btn_regis' onclick=\"location='buscarConv.php?var1=$var1&var2=$var2&var3=$var3'\" value='Buscar' class='btn_recuadro'>";
 				echo "</br>";
 				echo "<input type='text' name='DNI' placeholder='DNI' required class='input_recuadro' value='$var2'>";

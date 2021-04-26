@@ -8,7 +8,7 @@
 
 <form method="post" action="altaConv.php"> 
 	<div class="recuadros" style="text-align: center;">
-		<label for="empresas">Nombre de la empresa:</label>
+		<label for="empresas">Nombre de la empresas:</label>
 			<select name="nif" style="text-align: center;">
 				<option selected="true" disabled value="">Listado de empresas sin convenio</option>
 				<?php
